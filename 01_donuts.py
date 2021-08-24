@@ -10,9 +10,11 @@ e donuts(23) retorna 'Number of donuts: many'
 """
 
 def donuts(count):
-    # +++ SUA SOLUÇÃO +++
-    return
+    return cria_msg(count) if count < 10 else cria_msg()
 
+def cria_msg(x='many'):
+    msg = 'Number of donuts:'
+    return ' '.join([msg, str(x)])
 
 # --- Daqui para baixo são apenas códigos auxiliáries de teste. ---
 

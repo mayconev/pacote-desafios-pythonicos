@@ -56,7 +56,35 @@ import sys
 
 # +++ SUA SOLUÇÃO +++
 # Defina as funções print_words(filename) e print_top(filename).
+import sys
 
+
+# +++ SUA SOLUÇÃO +++
+
+def lower_words(file):
+
+    with open(file, 'r') as arq:
+        return arq.read().lower().split()
+
+
+def get_words(file):
+    aux = []
+    words = lower_words(file)
+    for w in words:
+        aux.append((w, words.count(w)))
+    return dict(sorted(set(aux)))
+
+# Defina as funções print_words(filename) e print_top(filename).
+def print_words(filename):
+    words = get_words(filename)
+    for i in words:
+        print(i, words[i])
+
+
+def print_top(filename):
+    words = get_words(filename)
+    for i in sorted(words, key=words.get, reverse=True):
+        print(i, words[i])
 
 # A função abaixo chama print_words() ou print_top() de acordo com os
 # parêtros do programa.

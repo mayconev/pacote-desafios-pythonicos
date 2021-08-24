@@ -10,9 +10,23 @@ Exemplo: 'abcde', a metade da frente é 'abc' e a de trás é 'de'.
 Finalmente, dadas duas strings a e b, retorne uma string na forma:
 a-frente + b-frente + a-trás + b-trás
 """
-def front_back(a, b):
+from math import ceil
+
+
+def front_back2(a, b):
     # +++ SUA SOLUÇÃO +++
-    return
+    return ''.join([a[:frente(a)],b[:frente(b)],a[frente(a):],b[frente(b):]])
+
+
+def frente(x):
+    i = 0 if len(x) % 2 == 0 else 1
+    return int(((len(x) - i) / 2) + i)
+
+def front_back(a, b):
+    return ''.join([a[:ceil(len(a) / 2)],
+                    b[:ceil(len(b) / 2)],
+                    a[ceil(len(a) / 2):],
+                    b[ceil(len(b) / 2):]])
 
 
 # --- Daqui para baixo são apenas códigos auxiliáries de teste. ---
@@ -39,3 +53,6 @@ if __name__ == '__main__':
     test(front_back, ('abcd', 'xy'), 'abxcdy')
     test(front_back, ('abcde', 'xyz'), 'abcxydez')
     test(front_back, ('Kitten', 'Donut'), 'KitDontenut')
+    test(front_back2, ('abcd', 'xy'), 'abxcdy')
+    test(front_back2, ('abcde', 'xyz'), 'abcxydez')
+    test(front_back2, ('Kitten', 'Donut'), 'KitDontenut')
